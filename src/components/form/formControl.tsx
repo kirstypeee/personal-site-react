@@ -8,12 +8,17 @@ interface FormControlProps {
   justifyContent?: string;
 }
 
-const FormControlStyles = styled.div<FormControlProps>`
+interface FormControlStyleProps {
+  $alignItems?: string;
+  $justifyContent?: string;
+}
+
+const FormControlStyles = styled.div<FormControlStyleProps>`
   display: flex;
   flex-direction: column;
   height: 100%;
-  align-items: ${({ alignItems }) => alignItems || "stretch"};
-  justify-content: ${({ justifyContent }) => justifyContent || "flex-start"};
+  align-items: ${({ $alignItems }) => $alignItems || "stretch"};
+  justify-content: ${({ $justifyContent }) => $justifyContent || "flex-start"};
   margin: ${theme.shape.margin}px;
 `;
 
@@ -23,7 +28,10 @@ export const FormControl: React.FC<FormControlProps> = ({
   justifyContent,
 }) => {
   return (
-    <FormControlStyles alignItems={alignItems} justifyContent={justifyContent}>
+    <FormControlStyles
+      $alignItems={alignItems}
+      $justifyContent={justifyContent}
+    >
       {children}
     </FormControlStyles>
   );

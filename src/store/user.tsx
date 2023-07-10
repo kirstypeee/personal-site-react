@@ -9,14 +9,14 @@ interface UserState {
   user: UserDetails;
   submitting: boolean;
   success: boolean;
-  error: string | null;
+  error?: string;
 }
 
 const initialState: UserState = {
   user: { name: "", company: "" },
   submitting: false,
   success: false,
-  error: null,
+  error: undefined,
 };
 
 export const userSlice = createSlice({
@@ -30,13 +30,13 @@ export const userSlice = createSlice({
       };
       state.submitting = true;
       state.success = false;
-      state.error = null;
+      state.error = undefined;
     },
     registerSuccess: (state, action) => {
       state.user = action.payload;
       state.submitting = false;
       state.success = true;
-      state.error = null;
+      state.error = undefined;
     },
     registerFailed: (state) => {
       state.submitting = false;
@@ -53,7 +53,11 @@ export const registerUser =
   (user: UserDetails) => async (dispatch: Dispatch) => {
     dispatch(registerPending());
     try {
-      //DO api CALL
+      await fetch("/api/user", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: { "Content-Type": "application/json" },
+      });
       dispatch(registerSuccess(user));
     } catch (err) {
       dispatch(registerFailed());

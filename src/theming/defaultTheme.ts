@@ -3,10 +3,18 @@ const colors = {
   border: "#BEBFC5",
   borderHover: "#8C92AC",
   borderFocus: "#6082B6",
+  disabled: "#BEBFC5",
   primary: {
     light: "#6D257B",
     main: "#50257B",
     dark: "#29174D",
+  },
+  neon: {
+    light: "#ffd5ff",
+    main: "#d42cca",
+  },
+  typography: {
+    secondary: "#8c8d90",
   },
   error: "#CE2029",
 };
@@ -19,7 +27,7 @@ const shape = {
 };
 
 const font = {
-  family: "Tilt Neon, sans-serif",
+  families: "Tilt Neon, Open Sans Condensed, sans-serif",
   small: 12,
 };
 

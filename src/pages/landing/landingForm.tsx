@@ -6,9 +6,12 @@ import { Fieldset } from "../../components/form/fieldset";
 import { Form } from "../../components/form/form";
 import { FormControl } from "../../components/form/formControl";
 import React from "react";
+import { SimpleLoading } from "../../components/loading/simpleLoading";
 import { TextInput } from "../../components/input/textInput";
 import { UserDetails } from "../../store/user";
+import { isEmpty } from "lodash";
 import { theme } from "../../theming/defaultTheme";
+import { useAppSelector } from "../../hooks/storeHooks";
 
 const STAR_COUNT = 200;
 
@@ -95,6 +98,9 @@ interface LandingFormProps {
 export const LandingForm: React.FC<LandingFormProps> = ({ onSubmit }) => {
   const [name, setName] = React.useState<string>("");
   const [company, setCompany] = React.useState<string>("");
+
+  const user = useAppSelector((state) => state.user);
+
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < STAR_COUNT; i++) {
@@ -116,12 +122,13 @@ export const LandingForm: React.FC<LandingFormProps> = ({ onSubmit }) => {
     return stars;
   };
 
-  const submitUserDetails = () => {
+  const submitUserDetails = (e: React.FormEvent) => {
+    e.preventDefault();
     onSubmit({ name, company });
   };
   return (
     <BackgroundStyles>
-      {renderStars()}
+      {process.env.NODE_ENV !== "development" && renderStars()}
       <Card
         width="50%"
         elevation={5}
@@ -135,6 +142,7 @@ export const LandingForm: React.FC<LandingFormProps> = ({ onSubmit }) => {
                     id="name"
                     value={name}
                     onChange={setName}
+                    validation={user.error?.toString()}
                   />
                 </FormControl>
                 <FormControl>
@@ -143,10 +151,18 @@ export const LandingForm: React.FC<LandingFormProps> = ({ onSubmit }) => {
                     id="company"
                     value={company}
                     onChange={setCompany}
+                    validation={user.error?.toString()}
                   />
                 </FormControl>
                 <FormControl alignItems="flex-end">
-                  <ArrowButton type="submit" />
+                  {user.submitting ? (
+                    <SimpleLoading size={20} />
+                  ) : (
+                    <ArrowButton
+                      type="submit"
+                      disabled={isEmpty(name) || isEmpty(company)}
+                    />
+                  )}
                 </FormControl>
               </Fieldset>
             }
