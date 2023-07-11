@@ -131,6 +131,7 @@ export const LandingForm: React.FC<LandingFormProps> = ({ onSubmit }) => {
       {process.env.NODE_ENV !== "development" && renderStars()}
       <Card
         width="50%"
+        minWidth="320px"
         elevation={5}
         content={
           <Form

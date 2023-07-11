@@ -1,3 +1,4 @@
+import { BounceLoading } from "./bounceLoading";
 import type { Meta } from "@storybook/react";
 import { SimpleLoading } from "./simpleLoading";
 
@@ -15,6 +16,8 @@ export const SimpleLoadingIndicator = () => {
   return <SimpleLoading size={50} />;
 };
 
-
+export const BounceLoadingIndicator = () => {
+  return <BounceLoading size={12} />;
+};
 
 export default meta;

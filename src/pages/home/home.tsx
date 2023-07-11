@@ -10,7 +10,7 @@ const BackgroundStyles = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
   padding: ${theme.shape.padding}px;
   height: calc(100vh - ${theme.shape.padding}px * 2);
   background-color: ${theme.colors.primary.dark};
@@ -20,7 +20,7 @@ const ImageWrapper = styled.div`
   margin-bottom: 3rem;
   & svg {
     width: 80vw;
-    max-width: 700px;
+    max-width: 500px;
     height: fit-content;
   }
 `;
