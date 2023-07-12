@@ -13,8 +13,8 @@ const flicker = keyframes`
 
 export const H1 = styled.h1`
   font-family: "Tilt Neon";
-  font-size: 7vw;
-  font-size: clamp(2rem, 7vw, 5rem);
+  font-size: ${theme.font.xxl};
+  font-size: ${theme.font.responsive.xxl};
   color: ${theme.colors.neon.light};
   text-shadow: 1px 0px 4px ${theme.colors.neon.light},
     2px 0px 4px ${theme.colors.neon.light},

@@ -1,3 +1,27 @@
 body {
   margin: 0;
+  background-color: #29174d;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page-enter {
+  opacity: 1;
+}
+
+.page-enter-active {
+  opacity: 1;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateX(100%);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms, transform 300ms;
 }

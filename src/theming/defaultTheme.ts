@@ -1,9 +1,9 @@
 const colors = {
   paper: "#ffffff",
-  border: "#BEBFC5",
+  border: "#e4e4e4",
   borderHover: "#8C92AC",
   borderFocus: "#6082B6",
-  disabled: "#BEBFC5",
+  disabled: "#e4e4e4",
   primary: {
     lightest: "#C778D7",
     light: "#6D257B",
@@ -15,6 +15,7 @@ const colors = {
     main: "#d42cca",
   },
   typography: {
+    primary: "#210F32",
     secondary: "#8c8d90",
   },
   error: "#CE2029",
@@ -28,8 +29,17 @@ const shape = {
 };
 
 const font = {
-  families: "Tilt Neon, Open Sans Condensed, sans-serif",
-  small: 12,
+  families: "Open Sans,Tilt Neon,Open Sans Condensed,Inconsolata,sans-serif",
+  small: "1vw",
+  medium: "1.2vw",
+  large: "2vw",
+  xxl: "7vw",
+  responsive: {
+    small: "clamp(0.5rem, 1vw, 1rem)",
+    medium: "clamp(0.75rem, 1.2vw, 1.25rem)",
+    large: "clamp(1rem, 2vw, 2rem)",
+    xxl: "clamp(2rem, 7vw, 5rem)",
+  },
 };
 
 const elevation: {
@@ -55,9 +65,22 @@ const elevation: {
   },
 };
 
+const neoShadow = {
+  primary: {
+    main: `20px 20px 60px #441f69,
+    -20px -20px 60px #5c2b8d`,
+    dark: `20px 20px 60px #231441,
+    -20px -20px 60px #2f1a59`,
+  },
+  paper: `4px 4px 8px #d8d8d8,
+  -4px -4px 8px #ffffff`,
+  paperInset: `inset 1px 1px 2px #d9d9d9, inset -1px -1px 2px #ffffff`,
+};
+
 export const theme = {
   colors,
   shape,
   font,
   elevation,
+  neoShadow,
 };

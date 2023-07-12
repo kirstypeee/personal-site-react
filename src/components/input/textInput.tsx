@@ -18,6 +18,7 @@ const InputField = styled.div`
 
 const StyledInput = styled.input`
   border: 1px solid ${theme.colors.border};
+  box-shadow: ${theme.neoShadow.paperInset};
   border-radius: ${theme.shape.borderRadius}px;
   padding: ${theme.shape.padding}px;
   height: ${theme.shape.inputHeight}px;
@@ -38,7 +39,12 @@ const StyledInput = styled.input`
     left: 15px;
     padding: 0 2px;
     background: ${theme.colors.paper};
-    font-size: ${theme.font.small}px;
+    font-size: ${theme.font.small};
+    font-size: ${theme.font.responsive.small};
+    color: ${theme.colors.typography.primary};
+  }
+  &:-internal-autofill-selected {
+    background-color: none;
   }
 `;
 const StyledLabel = styled.label`
@@ -48,6 +54,9 @@ const StyledLabel = styled.label`
   transform: translateY(-50%);
   pointer-events: none;
   transition: 0.1s ease;
+  font-size: ${theme.font.medium};
+  font-size: ${theme.font.responsive.medium};
+  color: ${theme.colors.typography.secondary};
 `;
 
 export const TextInput: React.FC<TextInputProps> = ({

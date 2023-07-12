@@ -10,15 +10,21 @@ interface CardProps {
   minWidth?: string;
 }
 
-const CardStyles = styled.div<CardProps>`
+interface CardStyleProps {
+  $elevation?: number;
+  $width?: string;
+  $minWidth?: string;
+}
+
+const CardStyles = styled.div<CardStyleProps>`
   z-index: 1;
   border-radius: ${theme.shape.borderRadius}px;
   background-color: ${theme.colors.paper};
-  width: ${({ width }) => width || "100%"};
-  min-width: ${({ minWidth }) => minWidth || "none"};
+  width: ${({ $width }) => $width || "100%"};
+  min-width: ${({ $minWidth }) => $minWidth || "none"};
   transition: ${theme.elevation.transition};
-  box-shadow: ${({ elevation }) =>
-    elevation ? theme.elevation[elevation].boxShadow : "none"};
+  box-shadow: ${({ $elevation }) =>
+    $elevation ? theme.elevation[$elevation].boxShadow : "none"};
 `;
 
 const CardHeader = styled.div`
@@ -35,10 +41,10 @@ export const Card: React.FC<CardProps> = ({
   content,
   elevation,
   width,
-  minWidth
+  minWidth,
 }) => {
   return (
-    <CardStyles minWidth={minWidth} width={width} elevation={elevation}>
+    <CardStyles $minWidth={minWidth} $width={width} $elevation={elevation}>
       {header && <CardHeader>{header}</CardHeader>}
       {content && <CardContent>{content}</CardContent>}
     </CardStyles>

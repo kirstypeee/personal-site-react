@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../icons/arrowIcon";
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theming/defaultTheme";
@@ -9,7 +10,7 @@ interface ArrowButtonProps {
 }
 
 const StyledButton = styled.button<ArrowButtonProps>`
-  padding: 4px 16px;
+  padding: 8px;
   align-items: center;
   display: flex;
   border: none;
@@ -17,22 +18,19 @@ const StyledButton = styled.button<ArrowButtonProps>`
   border-radius: 24px;
   transition: all ease 0.3s;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 3px 3px 6px #d9d9d9, -3px -3px 6px #ffffff;
   ${({ disabled }) =>
     disabled
-      ? ""
+      ? `
+    background: none;
+box-shadow:  none;
+    `
       : `&:hover svg {
     transform: scale(1.2);
     filter: drop-shadow(${theme.elevation[1].dropShadow});
   }`}
-`;
-
-const Icon = styled.svg`
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-  transition: all 1s;
-  transform-origin: 50% 50%;
 `;
 
 export const ArrowButton: React.FC<ArrowButtonProps> = ({
@@ -50,16 +48,9 @@ export const ArrowButton: React.FC<ArrowButtonProps> = ({
       data-callback="onSubmit"
       data-action="submit"
     >
-      <Icon
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        width={24}
-        height={24}
-        stroke={disabled ? theme.colors.disabled : theme.colors.primary.dark}
-      >
-        <line id="arrow-line" x1="0" y1="12" x2="21" y2="12"></line>
-        <polyline id="arrow-head" points="16 6, 22 12, 16 18"></polyline>
-      </Icon>
+      <ArrowIcon
+        color={disabled ? theme.colors.disabled : theme.colors.neon.main}
+      />
     </StyledButton>
   );
 };
