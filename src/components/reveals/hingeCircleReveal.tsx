@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+
 import styled from "styled-components";
 import { theme } from "../../theming/defaultTheme";
 
-const CoverCircle = styled.div`
+interface CircleProps {
+  $grow: boolean;
+}
+
+const CoverCircle = styled.div<CircleProps>`
   position: absolute;
   display: flex;
   align-items: center;
@@ -17,9 +22,12 @@ const CoverCircle = styled.div`
   transform-origin: 50% 15px;
   z-index: 1;
   cursor: pointer;
+  ${({ $grow }) => $grow ? `
+  display: none;
+  ` : ''}
 `;
 
-const HiddenCircle = styled.div`
+const HiddenCircle = styled.div<CircleProps>`
   position: relative;
   display: flex;
   align-items: center;
@@ -27,28 +35,18 @@ const HiddenCircle = styled.div`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: ${theme.colors.paper};
-  &:before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 20px;
-    top: 0px;
-    background-image: radial-gradient(
-        circle at center,
-        ${theme.colors.primary.dark} 5px,
-        transparent 5px
-      ),
-      radial-gradient(
-        circle at center,
-        ${theme.colors.primary.dark} 5px,
-        transparent 5px
-      );
-    background-size: 20px 20px;
-    background-position: top center;
-    background-repeat: no-repeat;
-    z-index: 2;
-  }
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(9, 9, 9, 1) 100%
+  );
+  transition: width 300ms ease-in, height 300ms ease-in;
+  box-shadow: ${theme.neoShadow.primary.darkInset};
+  cursor: pointer;
+  ${({ $grow }) => $grow ? `
+  width: 1000vw;
+  height: 1000vh;
+  ` : ''}
 `;
 
 const RevealWrapper = styled.div`
@@ -61,11 +59,23 @@ const RevealWrapper = styled.div`
   }
 `;
 
-export const HingeCircleReveal: React.FC = () => {
+interface HingeCircleRevealProps {
+  onClick: () => void;
+}
+export const HingeCircleReveal: React.FC<HingeCircleRevealProps> = ({ onClick }) => {
+  const [grow, setGrow] = useState(false)
+
+  const startTransition = () => {
+    setGrow(true);
+    setTimeout(() => {
+      onClick();
+    }, 200)
+  }
+
   return (
     <RevealWrapper>
-      <HiddenCircle>
-        <CoverCircle id="cover" />
+      <HiddenCircle $grow={grow} onClick={startTransition}>
+        <CoverCircle id="cover" $grow={grow} />
       </HiddenCircle>
     </RevealWrapper>
   );

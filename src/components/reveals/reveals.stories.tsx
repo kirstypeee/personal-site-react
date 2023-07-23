@@ -12,7 +12,7 @@ const meta: Meta = {
 };
 
 export const Hinge = () => {
-  return <HingeCircleReveal />;
+  return <HingeCircleReveal onClick={() => null} />;
 };
 
 export default meta;

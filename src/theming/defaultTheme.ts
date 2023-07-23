@@ -1,5 +1,6 @@
 const colors = {
   paper: "#ffffff",
+  paperContrast: "#000000",
   border: "#e4e4e4",
   borderHover: "#8C92AC",
   borderFocus: "#6082B6",
@@ -17,6 +18,7 @@ const colors = {
   typography: {
     primary: "#210F32",
     secondary: "#8c8d90",
+    light: "#ffffff",
   },
   error: "#CE2029",
 };
@@ -26,6 +28,9 @@ const shape = {
   padding: 16,
   margin: 16,
   inputHeight: 14,
+  responsive: {
+    margin: "min(2vw, 16px)",
+  },
 };
 
 const font = {
@@ -71,6 +76,8 @@ const neoShadow = {
     -20px -20px 60px #5c2b8d`,
     dark: `20px 20px 60px #231441,
     -20px -20px 60px #2f1a59`,
+    darkInset: `inset 20px 20px 60px #231441,
+    inset -20px -20px 60px #2f1a59`,
   },
   paper: `4px 4px 8px #d8d8d8,
   -4px -4px 8px #ffffff`,
@@ -83,4 +90,8 @@ export const theme = {
   font,
   elevation,
   neoShadow,
+};
+
+export const device = {
+  mobile: `(max-width: 550px)`,
 };

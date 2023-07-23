@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theming/defaultTheme";
 import { useAppSelector } from "../../hooks/storeHooks";
+import { useNavigate } from "react-router-dom";
 
 const BackgroundStyles = styled.div`
   display: flex;
@@ -19,14 +20,19 @@ const BackgroundStyles = styled.div`
 interface HomeProps {}
 
 export const Home: React.FC<HomeProps> = ({}) => {
+  const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.user);
+
+  const onClick = () => {
+    navigate("/dashboard");
+  };
 
   return (
     <BackgroundStyles>
       <H1>
         Welc<span className="flicker">o</span>me, {user.name}
       </H1>
-      <HingeCircleReveal />
+      <HingeCircleReveal onClick={onClick} />
     </BackgroundStyles>
   );
 };

@@ -48,6 +48,7 @@ const IconWrapper = styled.div`
   justify-content: space-between;
   padding: 0 ${theme.shape.padding}px;
   margin: ${theme.shape.margin}px 0;
+  margin: ${theme.shape.responsive.margin} 0;
   border: 1px solid ${theme.colors.border};
   border-radius: 30px;
 `;
@@ -203,7 +204,7 @@ export const LandingForm: React.FC<LandingFormProps> = ({ onSubmit }) => {
               onSubmit={submitUserDetails}
             />
             <Divider />
-            <Row $width="100%">
+            <Row $width="auto">
               <IconWrapper>
                 <CheckIcon color={theme.colors.disabled} />
                 <H3>All Code</H3>

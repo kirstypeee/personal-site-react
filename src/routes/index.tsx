@@ -7,6 +7,7 @@ import {
   useOutlet,
 } from "react-router-dom";
 
+import { DashboardPage } from "../pages/dashboard/dashboardPage";
 import { HomePage } from "../pages/home/homePage";
 import { LandingFormPage } from "../pages/landing/landingFormPage";
 import { ProtectedRoute } from "./protectedRoute";
@@ -32,6 +33,15 @@ const routes = [
     ),
     nodeRef: createRef<HTMLDivElement>(),
   },
+  {
+    path: "dashboard",
+    element: (
+      <ProtectedRoute>
+        <DashboardPage />
+      </ProtectedRoute>
+    ),
+    nodeRef: createRef<HTMLDivElement>(),
+  },
 ];
 
 const Routes: React.FC = () => {
@@ -46,7 +56,7 @@ const Routes: React.FC = () => {
         key={location.pathname}
         nodeRef={nodeRef}
         timeout={300}
-        classNames="page"
+        classNames={"page"}
         unmountOnExit
       >
         {(state) => (
