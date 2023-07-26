@@ -29,7 +29,17 @@ export const Dashboard: React.FC<DashboardProps> = ({}) => {
     <BackgroundStyles>
       <Toolbar title={`Welcome, ${user.user.name}`} endContent={SocialsRow()} />
       <GridContainer>
-        <Card header={<H3>Data visualisation</H3>} content={<GithubContributions/>} outlined={true} />
+        <Card
+          header={<H3>Data visualisation</H3>}
+          content={
+            <GithubContributions
+              initialWidth={
+                document.getElementById("githubContainer")?.offsetWidth ?? 375
+              }
+            />
+          }
+          outlined={true}
+        />
         <Card header={<H3>Third party integration</H3>} outlined={true} />
         <Card header={<H3>Test metrics</H3>} outlined={true} />
         <Card header={<H3>Blog</H3>} outlined={true} />

@@ -95,15 +95,17 @@ const Square = styled.div<{ $color: string; $width: number }>`
   }
 `;
 
-interface GithubContributionsProps {}
+interface GithubContributionsProps {
+  initialWidth: number;
+}
 
-export const GithubContributions: React.FC<GithubContributionsProps> = ({}) => {
+export const GithubContributions: React.FC<GithubContributionsProps> = ({
+  initialWidth,
+}) => {
   const contributions = useAppSelector((state) => state.github);
   const dispatch = useAppDispatch();
 
-  const [width, setWidth] = useState(
-    document.getElementById("githubContainer")?.offsetWidth ?? 375
-  );
+  const [width, setWidth] = useState(initialWidth);
 
   useEffect(() => {
     const handleResize = () => {
@@ -162,8 +164,8 @@ export const GithubContributions: React.FC<GithubContributionsProps> = ({}) => {
         ?.contributionCalendar?.weeks && (
         <Row>
           <Column key={"daysOfWeek"}>
-            {days.map((day) => (
-              <LabelWrapper $width={getSquareWidth(width)}>
+            {days.map((day, i) => (
+              <LabelWrapper key={i} $width={getSquareWidth(width)}>
                 <Body2>{day}</Body2>
               </LabelWrapper>
             ))}
