@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import github from "./github";
 import user from "./user";
 
 const store = configureStore({
-  reducer: { user },
+  reducer: { user, github },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

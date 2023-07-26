@@ -10,7 +10,7 @@ const AppStyles = styled.div`
 
 const App: React.FC = () => {
   const families = theme.font.families.split(",");
-  console.log(families);
+
   WebFont.load({
     google: {
       families,
